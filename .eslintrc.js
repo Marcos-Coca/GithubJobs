@@ -25,6 +25,7 @@ module.exports = {
   ],
   rules: {
     'no-use-before-define': 'off',
+    'react/display-name': 'off',
     '@typescript-eslint/no-use-before-define': ['error']
   }
 }
