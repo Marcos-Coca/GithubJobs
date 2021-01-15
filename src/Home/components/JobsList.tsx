@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 import getJobs from '../services/getJobs'
 import { Job } from '../../common/models/job'
+import useFetch from '../../common/hooks/useFetch'
 
 export default function () {
-  const [jobs, setJobs] = useState<Job[]>([])
+  const endpoint = getJobs()
+  const { data: jobs, loading, error } = useFetch<Job[]>(endpoint)
 
-  return (
-        <div>
+  if (error) {
+    return <div>Errro</div>
+  }
 
-        </div>
-  )
+  if (loading) {
+    return <div>Loading...</div>
+  }
+  return jobs?.map((job) => <div key={job.id}>{job.title}</div>)
 }

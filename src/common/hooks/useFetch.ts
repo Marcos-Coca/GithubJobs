@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
 export default function <T> (endpoint: string) {
-  const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  const [data, setData] = useState<T | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [data, setData] = useState<T>()
 
   useEffect(
     function setResponse () {
@@ -28,5 +28,5 @@ export default function <T> (endpoint: string) {
     [endpoint]
   )
 
-  return [data, loading, error]
+  return { data, loading, error }
 }
