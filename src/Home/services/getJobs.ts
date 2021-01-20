@@ -1,12 +1,16 @@
-import { url } from '../constants/baseUrl'
-import { JobRequest } from '../models/jobRequest'
+/* eslint-disable camelcase */
+import setUrlParam from '../../helpers/setUrlParam'
 
-export default function (jobRequest ?:JobRequest): string {
-  let endpoint = url
-  if (jobRequest) {
-    const { lat, long, location, fullTime, description } = jobRequest
-    endpoint += `?lat=${lat}&long=${long}&location=${location}&full_time=${fullTime}&description=${description}`
-  }
+interface JobRequest {
+  page?: number;
+  location?: number;
+  full_time?: boolean;
+  description?: string;
+}
 
-  return endpoint
+export default function (jobRequest: JobRequest = {}): string {
+  const url = Object.entries(jobRequest)
+    .reduce((url, [key, value]) => setUrlParam({ url, key, value }), 'positions.json?')
+
+  return url
 }
