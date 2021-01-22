@@ -1,23 +1,32 @@
-import React from 'react'
-
-import TextInput from '../../../common/components/TextInput'
-
+import React, { FormEvent } from 'react'
+type Change = React.ChangeEvent<HTMLInputElement>;
 interface Props {
-  onSubmit: () => void;
+  location: string;
+  fullTime: boolean;
+  description: string;
+  handleSubmit: (e: FormEvent) => void;
+  handleChangeFullTime: (e: Change) => void;
+  handleChangeLocation: (e: Change) => void;
+  handleChangeDescription: (e: Change) => void;
 }
 
-export default function ({ onSubmit }: Props) {
+export default function ({
+  location,
+  fullTime,
+  description,
+  handleSubmit,
+  handleChangeFullTime,
+  handleChangeLocation,
+  handleChangeDescription
+}: Props) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <TextInput
-          value={state.description}
-          onChange={state.updateDescription}
-        />
-        <TextInput value={state.location} onChange={state.updateLocation} />
+        <input value={description} onChange={handleChangeDescription} />
+        <input value={location} onChange={handleChangeLocation} />
         <input
           type="checkbox"
-          checked={state.fullTime}
+          checked={fullTime}
           onChange={handleChangeFullTime}
         />
         <button type="submit"></button>

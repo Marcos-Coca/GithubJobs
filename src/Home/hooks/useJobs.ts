@@ -1,16 +1,39 @@
 import { useState, useEffect } from 'react'
 
 import { Job } from 'Home/types/Job'
-import getJobs from 'Home/services/getJobs'
 import useFetch from 'Common/hooks/useFetch'
+import setUrlParam from 'Helpers/setUrlParam'
 import { useFormState } from 'Home/context/FormContext'
 
+interface JobRequest {
+  page?: number;
+  location?: string;
+  // eslint-disable-next-line camelcase
+  full_time?: boolean;
+  description?: string;
+}
+
 export default function () {
-  const [endpoint, setEndpoint] = useState()
-  const state = useFormState()
-  const {} = useFetch()
+  const [url, setUrl] = useState<string>('positions.json?')
+  const { data: jobs, error, loading } = useFetch<Job>(url)
+  const { description, location, page, fullTime } = useFormState()
+
+  function mapStateToJobRequest (): JobRequest {
+    return {
+      page,
+      location,
+      description,
+      full_time: fullTime
+    }
+  }
 
   useEffect(() => {
-    getJobs(state)
-  }, [JSON.stringify(state)])
+    const jobRequest = mapStateToJobRequest()
+
+    setUrl((url) =>
+      Object.entries(jobRequest)
+        .reduce((url, [key, value]) => setUrlParam({ url, key, value }), url))
+  }, [description, location, page, fullTime])
+
+  return { jobs, error, loading }
 }

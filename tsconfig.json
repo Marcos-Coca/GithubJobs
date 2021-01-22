@@ -15,7 +15,8 @@
     "baseUrl": "./",
     "paths": {
       "Home/*":["src/Home/*"],
-      "Common/*":["src/Common/*"]
+      "Common/*":["src/common/*"],
+      "Helpers/*":["src/helpers/*"]
     }
   },
   "include": ["src"]

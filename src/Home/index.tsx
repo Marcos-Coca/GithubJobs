@@ -1,6 +1,6 @@
 import React from 'react'
 
-import JobsList from 'Home/containers/JobList'
+import JobsList from 'Home/containers/JobsList'
 
 export default function () {
   return (

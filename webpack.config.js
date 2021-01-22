@@ -8,7 +8,8 @@ module.exports = {
   resolve: {
     alias: {
       Home: path.resolve(__dirname, 'src/Home'),
-      Common: path.resolve(__dirname, 'src/Common')
+      Common: path.resolve(__dirname, 'src/common'),
+      Helpers: path.resolve(__dirname, 'src/helpers')
 
     },
     extensions: ['.ts', '.tsx', '.js']

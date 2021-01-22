@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 const BASE_URL = 'https://cors-anywhere.herokuapp.com/https://jobs.github.com'
 
 export default function <T> (endpoint: string) {
+  const [data, setData] = useState<T>()
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState<T>()
 
   useEffect(
     function setResponse () {

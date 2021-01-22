@@ -1,19 +1,14 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 
+import { Job } from 'Home/types/Job'
+
 interface Props{
-    id: string;
-    type: string;
-    title: string;
-    company: string;
-    location: string;
-    createdAt: string;
-    companyUrl: string;
-    companyLogo: string;
+  job: Job
 }
 
-export default function (props: Props) {
-  const { companyLogo, title } = props
+export default function ({ job }: Props) {
+  const { companyLogo, title } = job
   return (
         <Card>
             <Card.Img>{companyLogo}</Card.Img>

@@ -1,27 +1,16 @@
-/* eslint-disable camelcase */
 import React from 'react'
 
-import JobCard from './JobCard'
-import getJobs from '../services/getJobs'
-
-interface Job {
-  id: string;
-  type: string;
-  title: string;
-  company: string;
-  location: string;
-  createdAt: string;
-  companyUrl: string;
-  companyLogo: string;
+import { Job } from 'Home/types/Job'
+import JobCard from 'Home/components/JobCard'
+interface Props{
+  jobs: Job[]
 }
 
-export default function ({}) {
-  const endpoint = getJobs()
-
+export default function JobsListComponent ({ jobs = [] }: Props) {
   return (
     <>
-      {jobs?.map((job) => (
-        <JobCard key={job.id} {...job} />
+      {jobs.map((job) => (
+        <JobCard key={job.id} job={job} />
       ))}
     </>
   )
