@@ -6,6 +6,11 @@ module.exports = {
   entry: './src/index.tsx',
   mode: 'development',
   resolve: {
+    alias: {
+      Home: path.resolve(__dirname, 'src/Home'),
+      Common: path.resolve(__dirname, 'src/Common')
+
+    },
     extensions: ['.ts', '.tsx', '.js']
   },
   module: {

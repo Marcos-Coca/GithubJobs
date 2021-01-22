@@ -1,12 +1,9 @@
-import { useReducer } from 'react'
+import { ActionType } from 'Home/context/formState'
+import { useFormState, useFormDispatch } from 'Home/context/FormContext'
 
-import reducer from './reducer'
-import { ActionType } from './actions'
-import { initialState, State } from './state'
-
-export default function (params: State = initialState) {
-  const [state, dispatch] = useReducer(reducer, params)
-  const { page, description, fullTime, location } = state
+export default function () {
+  const dispatch = useFormDispatch()
+  const { page, description, fullTime, location } = useFormState()
 
   const updateDescription = (description: string) =>
     dispatch({ type: ActionType.UPDATE_DESCRIPTION, description })

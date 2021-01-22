@@ -1,6 +1,5 @@
-import React, { FormEvent } from 'react'
+import React from 'react'
 
-import useForm from '../../hooks/useForm'
 import TextInput from '../../../common/components/TextInput'
 
 interface Props {
@@ -8,17 +7,6 @@ interface Props {
 }
 
 export default function ({ onSubmit }: Props) {
-  const state = useForm()
-
-  const handleChangeFullTime = () => {
-    state.updateFullTime(!state.fullTime)
-  }
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    onSubmit()
-  }
-
   return (
     <div>
       <form onSubmit={handleSubmit}>
