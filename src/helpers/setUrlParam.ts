@@ -6,11 +6,15 @@ interface Params {
 
 export default function setUrlParam (params: Params): string {
   const { url, key, value } = params
-  const queryParams = new URLSearchParams(url)
+  const queryStart = url.indexOf('?') + 1
+  const urlParmas = url.slice(queryStart)
+  const queryParams = new URLSearchParams(urlParmas)
 
   if (value) {
     queryParams.set(key, value.toString())
   }
 
-  return queryParams.toString()
+  const baseUrl = url.slice(0, queryStart)
+
+  return baseUrl + queryParams.toString()
 }

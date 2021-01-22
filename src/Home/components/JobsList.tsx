@@ -3,7 +3,7 @@ import React from 'react'
 import { Job } from 'Home/types/Job'
 import JobCard from 'Home/components/JobCard'
 interface Props{
-  jobs: Job[]
+  jobs?: Job[]
 }
 
 export default function JobsListComponent ({ jobs = [] }: Props) {

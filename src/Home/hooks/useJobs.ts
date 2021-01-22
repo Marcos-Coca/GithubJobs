@@ -13,9 +13,11 @@ interface JobRequest {
   description?: string;
 }
 
+const BASE_URL = 'positions.json?'
+
 export default function () {
-  const [url, setUrl] = useState<string>('positions.json?')
-  const { data: jobs, error, loading } = useFetch<Job>(url)
+  const [url, setUrl] = useState<string>(BASE_URL)
+  const { data: jobs, error, loading } = useFetch<Job[]>(url)
   const { description, location, page, fullTime } = useFormState()
 
   function mapStateToJobRequest (): JobRequest {
@@ -31,8 +33,10 @@ export default function () {
     const jobRequest = mapStateToJobRequest()
 
     setUrl((url) =>
-      Object.entries(jobRequest)
-        .reduce((url, [key, value]) => setUrlParam({ url, key, value }), url))
+      Object.entries(jobRequest).reduce(
+        (url, [key, value]) => setUrlParam({ url, key, value }), url)
+    )
+    console.log(url)
   }, [description, location, page, fullTime])
 
   return { jobs, error, loading }
